@@ -10,7 +10,8 @@ function addMeteoDates(req, res) {
 
   console.log(req.body);
 
-  const { temp, water } = req.body;
+  const { location, temp, water } = req.body;
+  meteo.location = location;
   meteo.temp = temp;
   meteo.water = water;
 
