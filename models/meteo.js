@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const MeteoSchema = Schema({
   location: String,
   date: {
-    type: date,
-    default: new date(),
+    type: Date,
+    default: Date(),
   },
   temp: Number,
   hum: Number,

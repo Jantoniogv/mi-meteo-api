@@ -10,12 +10,29 @@ function addMeteoDates(req, res) {
 
   console.log(req.body);
 
-  const { location, temp, water } = req.body;
+  const {
+    location,
+    date,
+    temp,
+    water,
+    hum,
+    pressure,
+    avg_wind,
+    min_wind,
+    max_wind,
+    dir_wind,
+  } = req.body;
   meteo.location = location;
+  meteo.date = date;
   meteo.temp = temp;
-  meteo.water = water;
+  meteo.hum = hum;
+  meteo.pressure = pressure;
+  meteo.avg_wind = avg_wind;
+  meteo.min_wind = min_wind;
+  meteo.max_wind = max_wind;
+  meteo.dir_wind = dir_wind;
 
-  console.log(typeof water);
+  //console.log(typeof water);
 
   if (!typeof temp === "number" && !typeof water === "number") {
     res
@@ -52,6 +69,53 @@ function getMeteoDates(req, res) {
   });
 }
 
+function getCurrentMeteoDates(req, res) {
+  Meteo.find()
+    .sort({ date: -1 })
+    .limit(1)
+    .then((meteoDates) => {
+      //console.log(meteoDates);
+      if (!meteoDates) {
+        res
+          .status(404)
+          .send({ message: "No se ha encontrado ningun dato meteorologico" });
+      } else {
+        res.status(200).send({ meteoDates });
+      }
+    });
+}
+
+function getLast24MeteoDates(req, res) {
+  Meteo.find()
+    .sort({ date: -1 })
+    .limit(24)
+    .then((meteoDates) => {
+      //console.log(meteoDates);
+      if (!meteoDates) {
+        res
+          .status(404)
+          .send({ message: "No se ha encontrado ningun dato meteorologico" });
+      } else {
+        res.status(200).send({ meteoDates });
+      }
+    });
+}
+
+function getIntervalMeteoDates(req, res) {
+  Meteo.find()
+    .sort({ $natural: -1 })
+    .limit(1)
+    .then((meteoDates) => {
+      //console.log(meteoDates);
+      if (!meteoDates) {
+        res
+          .status(404)
+          .send({ message: "No se ha encontrado ningun dato meteorologico" });
+      } else {
+        res.status(200).send({ meteoDates });
+      }
+    });
+}
 /* function signIn(req, res) {
   const params = req.body;
   const email = params.email.toLowerCase();
@@ -204,9 +268,9 @@ function updateUserDB(user, params, res) {
 
 module.exports = {
   addMeteoDates,
-  //signIn,
   getMeteoDates,
-  //getUsersActive,
+  getLast24MeteoDates,
+  getCurrentMeteoDates,
   //uploadAvatar,
   //getAvatar,
   //updateUser,
