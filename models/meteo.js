@@ -5,7 +5,6 @@ const MeteoSchema = Schema({
   location: String,
   date: {
     type: Date,
-    default: Date(),
   },
   temp: Number,
   hum: Number,
