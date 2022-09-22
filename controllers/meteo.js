@@ -75,11 +75,13 @@ function getMeteoDates(req, res) {
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 function getCurrentMeteoDates(req, res) {
-  Meteo.find()
+  const locationString = req.query.location;
+  console.log(req.query);
+  Meteo.find({ location: locationString })
     .sort({ date: -1 })
     .limit(1)
     .then((meteoDates) => {
-      //console.log(meteoDates);
+      console.log(meteoDates);
       if (!meteoDates) {
         res
           .status(404)
@@ -107,6 +109,7 @@ function getLast24MeteoDates(req, res) {
     {
       $match: {
         $and: [
+          { location: `${query.location}` },
           { date: { $gte: new Date(last24HourTime) } },
           { date: { $lte: new Date(currentTime) } },
         ],
@@ -134,27 +137,6 @@ function getLast24MeteoDates(req, res) {
     });
 }
 
-/* function getIntervalMeteoDates(req, res) {
-  Meteo.find({
-    $and: [
-      { date: { $gte: new Date("2022-09-15T18:00:00.000Z") } },
-      { date: { $lte: new Date("2022-09-15T18:59:59.999Z") } },
-    ],
-  })
-    .sort({ $natural: -1 })
-    .limit(1)
-    .then((meteoDates) => {
-      //console.log(meteoDates);
-      if (!meteoDates) {
-        res
-          .status(404)
-          .send({ message: "No se ha encontrado ningun dato meteorologico" });
-      } else {
-        res.status(200).send({ meteoDates });
-      }
-    });
-} */
-
 const queryAggregateSort = (query) => {
   let queryGroup;
   let querySort;
@@ -169,7 +151,7 @@ const queryAggregateSort = (query) => {
     queryGroup = `{"$group":{"_id":{"day":{"$dayOfMonth":"$date"},"month":{"$month":"$date"},"year":{"$year":"$date"}},`;
     querySort = `{"_id.year": -1,"_id.month": -1,"_id.day": -1}`;
   } else if (query.time === "m") {
-    queryGroup = `{"$group":{"_id":"month":{"$month":"$date"},"year":{"$year":"$date"}},`;
+    queryGroup = `{"$group":{"_id":{"month":{"$month":"$date"},"year":{"$year":"$date"}},`;
     querySort = `{"_id.year": -1,"_id.month": -1}`;
   } else if (query.time === "y") {
     queryGroup = `{"$group":{"_id":{"year":{"$year":"$date"}},`;
