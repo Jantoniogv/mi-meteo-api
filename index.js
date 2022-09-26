@@ -21,7 +21,7 @@ mongoose.connect(
       console.log("La conexion DB esta ok");
 
       app.listen(PORT_SERVER, () => {
-        consle.log("############################");
+        console.log("############################");
         console.log("######### API REST #########");
         console.log("############################");
         console.log(`http://${MONGOHOST}:${PORT_SERVER}/api/${API_VERSION}/`);
