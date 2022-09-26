@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.387ca900.css",
-    "main.js": "/static/js/main.2158a4ff.js",
+    "main.js": "/static/js/main.d83a17e5.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/logo-meteo-subbetica.png": "/static/media/logo-meteo-subbetica.9a5fd91e1ce89e0e6ccb.png",
     "index.html": "/index.html",
     "main.387ca900.css.map": "/static/css/main.387ca900.css.map",
-    "main.2158a4ff.js.map": "/static/js/main.2158a4ff.js.map",
+    "main.d83a17e5.js.map": "/static/js/main.d83a17e5.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.387ca900.css",
-    "static/js/main.2158a4ff.js"
+    "static/js/main.d83a17e5.js"
   ]
 }
