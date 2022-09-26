@@ -11,9 +11,7 @@ const {
 } = require("./config.js");
 
 mongoose.connect(
-  `mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{
-    MONGOPORT,
-  }}`,
+  `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}`,
   //`mongodb://${IP_SERVER}:${PORT_DB}/MiMeteoDB`,
   { useNewUrlParser: true },
   (err, res) => {
@@ -23,7 +21,7 @@ mongoose.connect(
       console.log("La conexion DB esta ok");
 
       app.listen(PORT_SERVER, () => {
-        console.log("############################");
+        consle.log("############################");
         console.log("######### API REST #########");
         console.log("############################");
         console.log(`http://${MONGOHOST}:${PORT_SERVER}/api/${API_VERSION}/`);
