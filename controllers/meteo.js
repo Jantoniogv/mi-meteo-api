@@ -8,8 +8,6 @@ const Meteo = require("../models/meteo");
 function addMeteoDates(req, res) {
   const meteo = new Meteo();
 
-  console.log(req.body);
-
   const {
     location,
     date,
@@ -126,12 +124,12 @@ function getLast24MeteoDates(req, res) {
   Meteo.aggregate(queryAggregate)
     .sort(queryArray[1])
     .then((meteoDates) => {
-      //console.log(meteoDates);
       if (!meteoDates) {
         res
           .status(404)
           .send({ message: "No se ha encontrado ningun dato meteorologico" });
       } else {
+        console.log(meteoDates);
         res.status(200).send({ meteoDates });
       }
     });
