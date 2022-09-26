@@ -12,5 +12,4 @@ module.exports = {
   MONGOUSER,
   MONGOPASSWORD,
   MONGOPORT,
-  PORT_DB,
 };
