@@ -81,7 +81,7 @@ function getCurrentMeteoDates(req, res) {
     .sort({ date: -1 })
     .limit(1)
     .then((meteoDates) => {
-      console.log(meteoDates);
+      // console.log(meteoDates);
       if (!meteoDates) {
         res
           .status(404)

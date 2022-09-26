@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 const { API_VERSION } = require("./config.js");
 
+const path = require("path");
+
 // Load routings
 //const authRoutes = require("./routes/auth");
 const meteoRoutes = require(`./routes/${API_VERSION}/meteo`);
@@ -25,7 +27,13 @@ app.use((req, res, next) => {
 });
 
 // Router Basic
-//app.use(`/api/${API_VERSION}`, authRoutes);
+
+app.use("/", express.static(path.join(__dirname, "build")));
+
+/* app.use(`/`, (req, res) => {
+  res.status(200).send({ check: "correcto" });
+}); */
+
 app.use(`/api/${API_VERSION}`, meteoRoutes);
 //app.use(`/api/${API_VERSION}`, menuRoutes);
 

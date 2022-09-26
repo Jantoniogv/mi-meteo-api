@@ -1,10 +1,20 @@
 const mongoose = require("mongoose");
 const app = require("./app");
-const PORT_SERVER = process.env.PORT || 3977;
-const { API_VERSION, IP_SERVER, PORT_DB } = require("./config.js");
+
+const {
+  PORT_SERVER,
+  API_VERSION,
+  MONGOHOST,
+  MONGOUSER,
+  MONGOPASSWORD,
+  MONGOPORT,
+} = require("./config.js");
 
 mongoose.connect(
-  `mongodb://${IP_SERVER}:${PORT_DB}/MiMeteoDB`,
+  `mongodb://${{ MONGOUSER }}:${{ MONGOPASSWORD }}@${{ MONGOHOST }}:${{
+    MONGOPORT,
+  }}`,
+  //`mongodb://${IP_SERVER}:${PORT_DB}/MiMeteoDB`,
   { useNewUrlParser: true },
   (err, res) => {
     if (err) {
@@ -16,7 +26,7 @@ mongoose.connect(
         console.log("############################");
         console.log("######### API REST #########");
         console.log("############################");
-        console.log(`http://${IP_SERVER}:${PORT_SERVER}/api/${API_VERSION}/`);
+        console.log(`http://${MONGOHOST}:${PORT_SERVER}/api/${API_VERSION}/`);
       });
     }
   }
