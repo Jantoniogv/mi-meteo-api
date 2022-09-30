@@ -12,7 +12,7 @@ const {
 
 mongoose.connect(
   `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}`,
-  //`mongodb://${IP_SERVER}:${PORT_DB}/MiMeteoDB`,
+  //`mongodb://${MONGOHOST}:${MONGOPORT}/MiMeteoDB`,
   { useNewUrlParser: true },
   (err, res) => {
     if (err) {
