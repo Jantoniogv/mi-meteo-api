@@ -92,7 +92,7 @@ function getCurrentMeteoDates(req, res) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function getLast24MeteoDates(req, res) {
+function getFilterMeteoDates(req, res) {
   const query = req.query;
 
   const currentTime = Number(query.endInterval);
@@ -209,7 +209,7 @@ const queryAggregateSort = (query) => {
 module.exports = {
   addMeteoDates,
   getMeteoDates,
-  getLast24MeteoDates,
+  getFilterMeteoDates,
   getCurrentMeteoDates,
   //uploadAvatar,
   //getAvatar,

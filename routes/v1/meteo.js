@@ -11,7 +11,7 @@ const api = express.Router();
 api.post("/add-meteo-dates", MeteoController.addMeteoDates);
 api.get("/meteo-dates", MeteoController.getMeteoDates);
 api.get("/current-meteo-dates", MeteoController.getCurrentMeteoDates);
-api.get("/last-24-meteo-dates", MeteoController.getLast24MeteoDates);
+api.get("/last-24-meteo-dates", MeteoController.getFilterMeteoDates);
 //api.get("/users-active", [md_auth.ensureAuth], UserController.getUsersActive);
 /* api.put(
   "/upload-avatar/:id",
