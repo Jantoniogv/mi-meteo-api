@@ -18,7 +18,7 @@ mongoose.connect(
     if (err) {
       throw err;
     } else {
-      console.log("La conexion DB esta ok");
+      console.log("La conexion con mongoDB esta ok");
 
       app.listen(PORT_SERVER, () => {
         console.log("############################");
