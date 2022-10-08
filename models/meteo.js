@@ -15,6 +15,8 @@ const MeteoSchema = Schema({
   min_wind: Number,
   max_wind: Number,
   dir_wind: String,
+
+  voltaje_bat: Number,
 });
 
 module.exports = mongoose.model("MeteoDates", MeteoSchema);

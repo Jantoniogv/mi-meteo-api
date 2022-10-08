@@ -19,6 +19,7 @@ function addMeteoDates(req, res) {
     min_wind,
     max_wind,
     dir_wind,
+    voltaje,
   } = req.body;
   meteo.location = location;
   meteo.date = date;
@@ -30,6 +31,7 @@ function addMeteoDates(req, res) {
   meteo.min_wind = min_wind;
   meteo.max_wind = max_wind;
   meteo.dir_wind = dir_wind;
+  meteo.voltaje_bat = voltaje;
 
   //console.log(typeof water);
 
@@ -183,28 +185,6 @@ const queryAggregateSort = (query) => {
 
   return queryArray;
 };
-/* {
-    $group: {
-      _id: {
-        hour: { $hour: "$date" },
-        date: {
-          $toDate: "$date",
-        },
-      },
-      temp: {
-        $avg: "$temp",
-      },
-      hum: {
-        $avg: "$hum",
-      },
-      pressure: {
-        $avg: "$pressure",
-      },
-      water: {
-        $sum: "$water",
-      },
-    },
-  }, */
 
 module.exports = {
   addMeteoDates,
