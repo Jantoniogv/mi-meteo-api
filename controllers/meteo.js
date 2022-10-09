@@ -174,6 +174,22 @@ const queryAggregateSort = (query) => {
     queryGroup = queryGroup.concat(`,"water":{"$sum":"$water"}`);
   }
 
+  /* if (Number(query.dir_wind)) {
+    queryGroup = queryGroup.concat(`,"dir_wind":{"$sum":"$water"}`);
+  } */
+
+  if (Number(query.avg_wind)) {
+    queryGroup = queryGroup.concat(`,"avg_wind":{"$avg":"$avg_wind"}`);
+  }
+
+  if (Number(query.max_wind)) {
+    queryGroup = queryGroup.concat(`,"max_wind":{"$max":"$max_wind"}`);
+  }
+
+  if (Number(query.min_wind)) {
+    queryGroup = queryGroup.concat(`,"min_wind":{"$min":"$min_wind"}`);
+  }
+
   queryGroup = queryGroup.concat(`}}`);
 
   //console.log(JSON.stringify(obj));
