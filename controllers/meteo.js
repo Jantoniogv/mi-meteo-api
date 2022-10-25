@@ -97,21 +97,21 @@ function getCurrentMeteoDates(req, res) {
 function getFilterMeteoDates(req, res) {
   const query = req.query;
 
-  const currentTime = Number(query.endInterval);
-  const last24HourTime = Number(query.startInterval);
+  const endInterval = query.endInterval;
+  const startInterval = query.startInterval;
 
   console.log(req.query);
 
-  console.log(new Date(currentTime).toLocaleString());
-  console.log(new Date(last24HourTime).toLocaleString());
+  console.log(new Date(endInterval));
+  console.log(new Date(startInterval).toLocaleString());
 
   let matchArray = [
     {
       $match: {
         $and: [
           { location: `${query.location}` },
-          { date: { $gte: new Date(last24HourTime) } },
-          { date: { $lte: new Date(currentTime) } },
+          { date: { $gte: new Date(startInterval) } },
+          { date: { $lte: new Date(endInterval) } },
         ],
       },
     },
