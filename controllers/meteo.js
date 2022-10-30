@@ -139,6 +139,7 @@ function getFilterMeteoDates(req, res) {
 
 const queryAggregateSort = (query) => {
   let queryGroup;
+  let queryGroupReplace;
   let querySort;
 
   if (query.time === "a") {
@@ -159,19 +160,27 @@ const queryAggregateSort = (query) => {
   }
 
   if (Number(query.temp)) {
-    queryGroup = queryGroup.concat(`"temp":{"$avg":"$temp"}`);
+    queryGroup = queryGroup.concat(`"temp":{"$avg":"$temp"},`);
+  }
+
+  if (Number(query.tempMax)) {
+    queryGroup = queryGroup.concat(`"temp":{"$max":"$temp"},`);
+  }
+
+  if (Number(query.tempMin)) {
+    queryGroup = queryGroup.concat(`"temp":{"$min":"$temp"},`);
   }
 
   if (Number(query.hum)) {
-    queryGroup = queryGroup.concat(`,"hum":{"$avg":"$hum"}`);
+    queryGroup = queryGroup.concat(`"hum":{"$avg":"$hum"},`);
   }
 
   if (Number(query.pressure)) {
-    queryGroup = queryGroup.concat(`,"pressure":{"$avg":"$pressure"}`);
+    queryGroup = queryGroup.concat(`"pressure":{"$avg":"$pressure"},`);
   }
 
   if (Number(query.water)) {
-    queryGroup = queryGroup.concat(`,"water":{"$sum":"$water"}`);
+    queryGroup = queryGroup.concat(`"water":{"$sum":"$water"},`);
   }
 
   /* if (Number(query.dir_wind)) {
@@ -179,25 +188,22 @@ const queryAggregateSort = (query) => {
   } */
 
   if (Number(query.avg_wind)) {
-    queryGroup = queryGroup.concat(`,"avg_wind":{"$avg":"$avg_wind"}`);
+    queryGroup = queryGroup.concat(`"avg_wind":{"$avg":"$avg_wind"},`);
   }
 
   if (Number(query.max_wind)) {
-    queryGroup = queryGroup.concat(`,"max_wind":{"$max":"$max_wind"}`);
+    queryGroup = queryGroup.concat(`"max_wind":{"$max":"$max_wind"},`);
   }
 
   if (Number(query.min_wind)) {
-    queryGroup = queryGroup.concat(`,"min_wind":{"$min":"$min_wind"}`);
+    queryGroup = queryGroup.concat(`"min_wind":{"$min":"$min_wind"},`);
   }
 
-  queryGroup = queryGroup.concat(`}}`);
+  queryGroup = queryGroup.concat(`}}#`);
 
-  //console.log(JSON.stringify(obj));
+  queryGroupReplace = queryGroup.replace(`,}}#`, `}}`); //Quitamos la ultima como y reemplazamos la cadena de la consulta
 
-  //console.log(queryGroup);
-  //console.log(JSON.parse(queryGroup));
-
-  let queryArray = [JSON.parse(queryGroup), JSON.parse(querySort)];
+  let queryArray = [JSON.parse(queryGroupReplace), JSON.parse(querySort)];
 
   return queryArray;
 };
