@@ -11,7 +11,7 @@ const {
 } = require("./config.js");
 
 mongoose.connect(
-  `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}`,
+  `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}/MiMeteoDB`,
   //`mongodb://${MONGOHOST}:${MONGOPORT}/MiMeteoDB`,
   { useNewUrlParser: true },
   (err, res) => {
