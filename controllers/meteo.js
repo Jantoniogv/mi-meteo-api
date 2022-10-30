@@ -102,8 +102,8 @@ function getFilterMeteoDates(req, res) {
 
   console.log(req.query);
 
-  console.log(new Date(endInterval));
-  console.log(new Date(startInterval).toLocaleString());
+  //console.log(new Date(endInterval));
+  //console.log(new Date(startInterval).toLocaleString());
 
   let matchArray = [
     {
@@ -164,11 +164,11 @@ const queryAggregateSort = (query) => {
   }
 
   if (Number(query.tempMax)) {
-    queryGroup = queryGroup.concat(`"temp":{"$max":"$temp"},`);
+    queryGroup = queryGroup.concat(`"tempMax":{"$max":"$temp"},`);
   }
 
   if (Number(query.tempMin)) {
-    queryGroup = queryGroup.concat(`"temp":{"$min":"$temp"},`);
+    queryGroup = queryGroup.concat(`"tempMin":{"$min":"$temp"},`);
   }
 
   if (Number(query.hum)) {
